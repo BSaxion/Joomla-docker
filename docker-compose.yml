@@ -1,0 +1,19 @@
+joomla:
+  container_name: Joomla
+  restart: always
+  image: joomla
+  links:
+    - joomladb:mysql
+  ports:
+    - 8000:80
+  volumes:
+    - ./joomla:/var/www/html
+
+joomladb:
+  container_name: MyJoomlaDB
+  restart: always
+  image: mysql:5.6
+  environment:
+    MYSQL_ROOT_PASSWORD: admin
+  volumes:
+    - ./joomla_mysql:/var/lib/mysql
